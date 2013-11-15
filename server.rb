@@ -3,9 +3,13 @@ require 'json'
 require 'webrick'
 require 'rails_lite'
 
-$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "app", "controllers")
+$LOAD_PATH << File.join(File.dirname(__FILE__), "app", "controllers")
 require "users_controller"
 require "statuses_controller"
+
+# db stuff
+db_file_name = File.expand_path(File.join(File.dirname(__FILE__), "db", "auth.db"))
+ActiveRecordLite::DBConnection.open(db_file_name)
 
 
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick.html
